@@ -1,0 +1,44 @@
+$background-primary: #ffffff;
+$strokes-secondary: #e6e6e6;
+
+.header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+
+    align-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid $strokes-secondary;
+
+    padding-left: 20px;
+
+    &__title {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+
+        padding-left: 20px;
+
+        width: 225px;
+
+        color: #000000;
+    }
+
+    &__usergroup {
+        padding-right: 29.5px;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+        &__title {
+            display: none;
+        }
+    }
+}
