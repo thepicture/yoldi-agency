@@ -32,7 +32,7 @@
         cursor: auto;
     }
 
-    &:hover {
+    &:hover:not(&:disabled) {
         color: #d5d5d5;
     }
 

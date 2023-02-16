@@ -1,4 +1,4 @@
-import React, { isValidElement, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './Input.module.scss';
 
@@ -7,6 +7,8 @@ export interface InputProps {
     placeholder?: string;
     autocomplete?: string;
     isInputVisible?: boolean;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name: string;
 }
 
 export interface InputIconProps {
@@ -23,7 +25,7 @@ export const Input: React.FC<InputProps> & { Icon: typeof InputIcon } = ({
     autocomplete = 'off',
     isInputVisible = true,
     onChange,
-    value,
+    name,
 }) => {
     const [text, setText] = useState('');
     const [shouldRevealInput, setShouldRevealInput] = useState(false);
@@ -31,6 +33,7 @@ export const Input: React.FC<InputProps> & { Icon: typeof InputIcon } = ({
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value);
+        onChange(event);
     };
 
     return (
@@ -42,6 +45,7 @@ export const Input: React.FC<InputProps> & { Icon: typeof InputIcon } = ({
                     placeholder={placeholder}
                     autoComplete={autocomplete}
                     value={text}
+                    name={name}
                     onChange={handleChange}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
