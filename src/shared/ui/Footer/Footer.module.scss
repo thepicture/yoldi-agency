@@ -1,0 +1,11 @@
+$background-primary: #ffffff;
+$strokes-secondary: 1px solid #e6e6e6;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $background-primary;
+    border-top: $strokes-secondary;
+}
