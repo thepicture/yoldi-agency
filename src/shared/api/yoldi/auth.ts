@@ -5,12 +5,19 @@ import type { Response } from './models';
 
 const BASE_URL = '/auth';
 
-export type SignUpParams = {
+export type SignInParams = {
     email?: string;
-    name?: string;
     password?: string;
+};
+
+export type SignUpParams = SignInParams & {
+    name?: string;
 };
 
 export const register = (params?: SignUpParams): AxiosPromise<Response> => {
     return apiInstance.post(`${BASE_URL}/sign-up`, params);
+};
+
+export const signIn = (params?: SignInParams): AxiosPromise<Response> => {
+    return apiInstance.post(`${BASE_URL}/login`, params);
 };
