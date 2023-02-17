@@ -11,7 +11,7 @@ import { NameIcon } from '../Icons/NameIcon';
 import { PasswordIcon } from '../Icons/PasswordIcon';
 import { Input } from '../Input';
 import { ToggleButton } from '../ToggleButton';
-import styles from './RegistrationForm.module.scss';
+import styles from './LoginForm.module.scss';
 
 interface FieldSet {
     [key: string]: string;
@@ -19,19 +19,18 @@ interface FieldSet {
 
 const EMAIL_REGEXP = /^\w+@\w+\.\w{2,3}$/;
 
-export const RegistrationForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
     const [api, contextHolder] = useNotification();
 
     const notify = (text: string) => {
         api.info({
-            message: `Регистрация`,
+            message: `Вход`,
             description: <Context.Consumer>{() => text}</Context.Consumer>,
         });
     };
 
     const [fields, setFields] = useState<FieldSet>({
         email: '',
-        name: '',
         password: '',
     });
 
@@ -45,15 +44,15 @@ export const RegistrationForm: React.FC = () => {
         );
     };
 
-    const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {
-            const response = await auth.register(fields);
+            const response = await auth.signIn(fields);
             const message = response.data;
 
             if ('value' in message) {
-                notify('Регистрация успешна!');
+                notify('Вход успешен!');
             } else {
                 notify(message.message);
             }
@@ -70,25 +69,15 @@ export const RegistrationForm: React.FC = () => {
         }
     };
 
-    const canSignUpSucceed =
+    const canSignInSucceed =
         Object.values(fields).every((value) => !!value) &&
         EMAIL_REGEXP.test(fields.email);
 
     return (
-        <form className={styles.form} onSubmit={handleSignUp}>
+        <form className={styles.form} onSubmit={handleSignIn}>
             {contextHolder}
-            <h2 className={styles.form__title}>Регистрация в Yoldi Agency</h2>
+            <h2 className={styles.form__title}>Вход в Yoldi Agency</h2>
             <section className={styles.form__fieldset}>
-                <Input
-                    placeholder="Имя"
-                    autocomplete="given-name"
-                    name="name"
-                    onChange={handleChange}
-                >
-                    <Input.Icon>
-                        <NameIcon />
-                    </Input.Icon>
-                </Input>
                 <Input
                     placeholder="E-mail"
                     autocomplete="email"
@@ -110,9 +99,7 @@ export const RegistrationForm: React.FC = () => {
                         <PasswordIcon />
                     </Input.Icon>
                 </Input>
-                <ToggleButton isActive={canSignUpSucceed}>
-                    Создать аккаунт
-                </ToggleButton>
+                <ToggleButton isActive={canSignInSucceed}>Войти</ToggleButton>
             </section>
         </form>
     );

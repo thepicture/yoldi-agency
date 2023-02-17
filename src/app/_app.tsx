@@ -1,8 +1,7 @@
-import { notification } from 'antd';
 import type { AppProps } from 'next/app';
 import { createContext, useMemo } from 'react';
 
-import './index.scss';
+import '@/app/index.scss';
 
 export const Context = createContext({ name: 'Default' });
 

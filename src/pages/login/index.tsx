@@ -4,20 +4,20 @@ import React from 'react';
 
 import '@/app/index.scss';
 
-import { AlreadyHaveAccount } from '@/shared/ui/AlreadyHaveAccount';
 import { Button } from '@/shared/ui/Button';
 import { Footer } from '@/shared/ui/Footer';
 import { Header } from '@/shared/ui/Header/Header';
 import { HeaderContentFooterGrid } from '@/shared/ui/HeaderContentFooterGrid';
+import { LoginForm } from '@/shared/ui/LoginForm';
 import { Logo } from '@/shared/ui/Logo';
-import { RegistrationForm } from '@/shared/ui/RegistrationForm';
+import { NoAccountYet } from '@/shared/ui/NoAccountYet';
 
 import styles from './index.module.scss';
 
-const RegistrationPage: React.FC = () => {
+const LoginPage: React.FC = () => {
     const router = useRouter();
 
-    const handleNavigateToSignIn = () => {
+    const handleNavigateToLogin = () => {
         window.location.href = '/login';
     };
 
@@ -27,20 +27,17 @@ const RegistrationPage: React.FC = () => {
                 logo={<Logo />}
                 text="Разрабатываем и запускаем сложные веб проекты"
                 userGroup={
-                    <Button
-                        text="Войти"
-                        onClick={() => handleNavigateToSignIn()}
-                    />
+                    <Button text="Войти" onClick={handleNavigateToLogin} />
                 }
             />
             <section className={styles.background}>
-                <RegistrationForm />
+                <LoginForm />
             </section>
             <Footer>
-                <AlreadyHaveAccount />
+                <NoAccountYet />
             </Footer>
         </HeaderContentFooterGrid>
     );
 };
 
-export default RegistrationPage;
+export default LoginPage;
