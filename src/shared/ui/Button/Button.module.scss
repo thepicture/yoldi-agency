@@ -24,4 +24,9 @@
     line-height: 160%;
 
     color: #000000;
+
+    &:hover {
+        background: #eee;
+        transition: all 100ms ease-in-out;
+    }
 }
