@@ -2,12 +2,12 @@ import useNotification from 'antd/lib/notification/useNotification';
 import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 
-import { Context } from '@/app/_app';
+import { Context } from '@/pages/_app';
 
 import { auth } from '@/shared/api/yoldi';
+import { EMAIL_REGEXP } from '@/shared/config';
 
 import { EmailFieldIcon } from '../Icons/EmailFieldIcon';
-import { NameIcon } from '../Icons/NameIcon';
 import { PasswordIcon } from '../Icons/PasswordIcon';
 import { Input } from '../Input';
 import { ToggleButton } from '../ToggleButton';
@@ -16,8 +16,6 @@ import styles from './LoginForm.module.scss';
 interface FieldSet {
     [key: string]: string;
 }
-
-const EMAIL_REGEXP = /^\w+@\w+\.\w{2,3}$/;
 
 export const LoginForm: React.FC = () => {
     const [api, contextHolder] = useNotification();

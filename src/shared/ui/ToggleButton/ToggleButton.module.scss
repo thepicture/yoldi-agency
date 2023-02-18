@@ -1,3 +1,5 @@
+@import '@/app/index.scss';
+
 .button {
     box-sizing: border-box;
 
@@ -21,13 +23,13 @@
     font-size: 16px;
     line-height: 160%;
 
-    color: #fff;
+    color: $background-primary;
 
     cursor: pointer;
 
     &:disabled {
-        background: #d5d5d5;
-        color: #f3f3f3;
+        background: $strokes-primary-second;
+        color: $background-secondary;
 
         cursor: auto;
     }
@@ -37,7 +39,7 @@
     }
 
     &:focus {
-        outline: red;
-        border: 4px solid red;
+        outline: $error;
+        border: 4px solid $error;
     }
 }

@@ -7,9 +7,9 @@ export const AlreadyHaveAccount: React.FC = () => {
     return (
         <p className={styles.paragraph}>
             Уже есть аккаунт?{' '}
-            <a className={styles.paragraph__link} href="/login">
+            <Link className={styles.paragraph__link} href="/login">
                 Войти
-            </a>
+            </Link>
         </p>
     );
 };

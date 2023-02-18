@@ -1,24 +1,20 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import '@/app/index.scss';
-
 import { AlreadyHaveAccount } from '@/shared/ui/AlreadyHaveAccount';
 import { Button } from '@/shared/ui/Button';
+import { CenteredWrapper } from '@/shared/ui/CenteredWrapper';
 import { Footer } from '@/shared/ui/Footer';
 import { Header } from '@/shared/ui/Header/Header';
 import { HeaderContentFooterGrid } from '@/shared/ui/HeaderContentFooterGrid';
 import { Logo } from '@/shared/ui/Logo';
 import { RegistrationForm } from '@/shared/ui/RegistrationForm';
 
-import styles from './index.module.scss';
-
 const RegistrationPage: React.FC = () => {
     const router = useRouter();
 
     const handleNavigateToSignIn = () => {
-        window.location.href = '/login';
+        router.push('/login');
     };
 
     return (
@@ -33,9 +29,9 @@ const RegistrationPage: React.FC = () => {
                     />
                 }
             />
-            <section className={styles.background}>
+            <CenteredWrapper>
                 <RegistrationForm />
-            </section>
+            </CenteredWrapper>
             <Footer>
                 <AlreadyHaveAccount />
             </Footer>
