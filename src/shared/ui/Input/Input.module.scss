@@ -1,3 +1,5 @@
+@import '@/app/index.scss';
+
 .container {
     position: relative;
     box-sizing: border-box;
@@ -14,10 +16,10 @@
     width: 330px;
     height: 50px;
 
-    border: 1px solid #d5d5d5;
+    border: 1px solid $strokes-primary-second;
     border-radius: 5px;
 
-    background: #ffffff;
+    background: $background-primary;
 
     &__input,
     &__input_viewer {
@@ -31,7 +33,7 @@
         font-size: 16px;
         line-height: 160%;
 
-        color: #000000;
+        color: $txt-color;
     }
 
     &__input_viewer {
@@ -44,7 +46,7 @@
 
         pointer-events: none;
 
-        background-color: white;
+        background-color: $background-primary;
     }
 
     &__input_viewer_focused {

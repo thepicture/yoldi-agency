@@ -1,9 +1,11 @@
+@import '@/app/index.scss';
+
 .logo {
     display: block;
     width: 80px;
     height: 50px;
 
-    background-color: #feff80;
+    background-color: $logo-background;
 
     &__text {
         padding-top: 16.43px;

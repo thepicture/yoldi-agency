@@ -1,3 +1,5 @@
+@import '@/app/index.scss';
+
 .form {
     box-sizing: border-box;
 
@@ -6,8 +8,8 @@
 
     padding: 30px;
 
-    background-color: #fff;
-    border: 1px solid #e6e6e6;
+    background-color: $background-primary;
+    border: 1px solid $strokes-secondary;
     border-radius: 5px;
 
     &__title {
