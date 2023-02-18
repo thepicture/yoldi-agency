@@ -1,10 +1,9 @@
 @import '@/app/index.scss';
 
-.footer {
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: $background-primary;
-    border-top: 1px solid $strokes-secondary;
+    background: $background-secondary;
 }

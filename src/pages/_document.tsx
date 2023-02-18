@@ -5,6 +5,11 @@ export default function Document() {
         <Html>
             <Head>
                 <link
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+                />
+
+                <link
                     href="https://fonts.cdnfonts.com/css/inter"
                     rel="stylesheet"
                 />
