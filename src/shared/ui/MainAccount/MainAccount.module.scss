@@ -1,0 +1,98 @@
+.main {
+    padding-left: 240px;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    height: 100px;
+
+    margin-top: -50px;
+
+    background: #f3f3f3;
+
+    border: 1px solid #e6e6e6;
+    border-radius: 999999px;
+}
+
+.letter {
+    position: absolute;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 140%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 140%;
+
+    color: #000000;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.email {
+    padding-top: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+
+    color: #838383;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.description {
+    padding-top: 10px;
+
+    width: 600px;
+    height: 130px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+
+    color: #000000;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.button {
+    padding-top: 60px;
+}
+
+.edit {
+    padding-left: 439px;
+}
+
+.heading {
+    padding-top: 35px;
+
+    display: flex;
+}
