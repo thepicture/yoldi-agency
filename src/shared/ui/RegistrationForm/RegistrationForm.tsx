@@ -1,9 +1,11 @@
 import useNotification from 'antd/lib/notification/useNotification';
 import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { Context } from '@/pages/_app';
 
+import { saveApiKey } from '@/shared/api/session';
 import { auth } from '@/shared/api/yoldi';
 import { EMAIL_REGEXP } from '@/shared/config';
 
@@ -20,6 +22,7 @@ interface FieldSet {
 
 export const RegistrationForm: React.FC = () => {
     const [api, contextHolder] = useNotification();
+    const router = useRouter();
 
     const notify = (text: string) => {
         api.info({
@@ -53,6 +56,9 @@ export const RegistrationForm: React.FC = () => {
 
             if ('value' in message) {
                 notify('Регистрация успешна!');
+
+                saveApiKey(message.value);
+                router.replace('/account');
             } else {
                 notify(message.message);
             }

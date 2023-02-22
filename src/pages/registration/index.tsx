@@ -1,6 +1,8 @@
+import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import { navigateFromLoginPageIfLoggedInProps } from '@/shared/api/ssrprops';
 import { AlreadyHaveAccount } from '@/shared/ui/AlreadyHaveAccount';
 import { Button } from '@/shared/ui/Button';
 import { CenteredWrapper } from '@/shared/ui/CenteredWrapper';
@@ -38,5 +40,9 @@ const RegistrationPage: React.FC = () => {
         </HeaderContentFooterGrid>
     );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    return await navigateFromLoginPageIfLoggedInProps(context);
+}
 
 export default RegistrationPage;

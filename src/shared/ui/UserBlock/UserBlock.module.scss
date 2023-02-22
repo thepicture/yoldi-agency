@@ -1,0 +1,48 @@
+.block {
+    display: flex;
+
+    &__name {
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        padding-right: 20px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+        color: #000000;
+    }
+
+    &__avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 50px;
+        height: 50px;
+
+        background: #f3f3f3;
+
+        border: 1px solid #e6e6e6;
+        border-radius: 999999px;
+    }
+}
+
+.letter {
+    position: absolute;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
