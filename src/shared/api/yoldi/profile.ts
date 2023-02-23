@@ -1,9 +1,7 @@
-import type { AxiosPromise } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 
-import { getApiKey } from '../session';
+import { getApiKey, getApiKeyFromCookies } from '../session';
 import { apiInstance } from './base';
-import type { Response } from './models';
 
 const BASE_URL = '/profile';
 
@@ -26,10 +24,24 @@ export type ProfileDto = {
     };
 };
 
+export type UpdateProfileDto = {
+    name: string;
+    slug: string;
+    description: string;
+};
+
 export const getProfile = (context: GetServerSidePropsContext) => {
     return apiInstance.get<ProfileDto>(`${BASE_URL}`, {
         headers: {
             'X-API-KEY': getApiKey(context),
+        },
+    });
+};
+
+export const patchProfile = (profile: UpdateProfileDto) => {
+    return apiInstance.patch(`${BASE_URL}`, profile, {
+        headers: {
+            'X-API-KEY': getApiKeyFromCookies(),
         },
     });
 };
