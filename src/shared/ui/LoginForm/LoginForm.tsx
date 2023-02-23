@@ -7,6 +7,7 @@ import { Context } from '@/pages/_app';
 
 import { saveApiKey } from '@/shared/api/session';
 import { auth } from '@/shared/api/yoldi';
+import { LoginDto } from '@/shared/api/yoldi/auth';
 import { EMAIL_REGEXP } from '@/shared/config';
 
 import { EmailFieldIcon } from '../Icons/EmailFieldIcon';
@@ -14,10 +15,6 @@ import { PasswordIcon } from '../Icons/PasswordIcon';
 import { Input } from '../Input';
 import { ToggleButton } from '../ToggleButton';
 import styles from './LoginForm.module.scss';
-
-interface FieldSet {
-    [key: string]: string;
-}
 
 export const LoginForm: React.FC = () => {
     const [api, contextHolder] = useNotification();
@@ -30,19 +27,22 @@ export const LoginForm: React.FC = () => {
         });
     };
 
-    const [fields, setFields] = useState<FieldSet>({
+    const [fields, setFields] = useState<LoginDto>({
         email: '',
         password: '',
     });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
         const {
             target: { name, value },
         } = event;
 
-        setFields((fields) =>
-            Object.assign({}, fields, { [name as keyof FieldSet]: value }),
-        );
+        setFields({
+            ...fields,
+            [name]: value,
+        });
     };
 
     const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -56,7 +56,7 @@ export const LoginForm: React.FC = () => {
                 saveApiKey(message.value);
 
                 notify('Вход успешен!');
-                router.replace('/account');
+                router.replace('/');
             } else {
                 notify(message.message);
             }
@@ -75,7 +75,7 @@ export const LoginForm: React.FC = () => {
 
     const canSignInSucceed =
         Object.values(fields).every((value) => !!value) &&
-        EMAIL_REGEXP.test(fields.email);
+        EMAIL_REGEXP.test(fields.email || '');
 
     return (
         <form className={styles.form} onSubmit={handleSignIn}>
@@ -86,6 +86,7 @@ export const LoginForm: React.FC = () => {
                     placeholder="E-mail"
                     autocomplete="email"
                     name="email"
+                    value={fields.email}
                     onChange={handleChange}
                 >
                     <Input.Icon>
@@ -97,6 +98,7 @@ export const LoginForm: React.FC = () => {
                     autocomplete="new-password"
                     name="password"
                     isInputVisible={false}
+                    value={fields.password}
                     onChange={handleChange}
                 >
                     <Input.Icon>

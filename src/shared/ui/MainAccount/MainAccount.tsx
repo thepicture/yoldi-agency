@@ -9,9 +9,13 @@ import styles from './MainAccount.module.scss';
 
 export interface MainAccountProps {
     profileDto: ProfileDto;
+    onEdit: () => void;
 }
 
-export const MainAccount: React.FC<MainAccountProps> = ({ profileDto }) => {
+export const MainAccount: React.FC<MainAccountProps> = ({
+    profileDto,
+    onEdit,
+}) => {
     const router = useRouter();
 
     const handleLogOut = () => {
@@ -29,17 +33,7 @@ export const MainAccount: React.FC<MainAccountProps> = ({ profileDto }) => {
             <section className={styles.heading}>
                 <h2 className={styles.title}>{profileDto.name}</h2>
                 <section className={styles.edit}>
-                    <Button
-                        text="Редактировать"
-                        onClick={function (
-                            event: React.MouseEvent<
-                                HTMLButtonElement,
-                                MouseEvent
-                            >,
-                        ): void {
-                            throw new Error('Function not implemented.');
-                        }}
-                    />
+                    <Button text="Редактировать" onClick={() => onEdit()} />
                 </section>
             </section>
             <section>

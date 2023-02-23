@@ -53,7 +53,7 @@ function redirectTo(path: string) {
     return {
         redirect: {
             destination: `/${path}`,
-            permanent: true,
+            statusCode: 302,
         },
     };
 }

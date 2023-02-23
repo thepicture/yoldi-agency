@@ -10,6 +10,15 @@ export type SignInParams = {
     password?: string;
 };
 
+export type LoginDto = {
+    email: string;
+    password: string;
+};
+
+export type SignUpDto = LoginDto & {
+    name: string;
+};
+
 export type SignUpParams = SignInParams & {
     name?: string;
 };
