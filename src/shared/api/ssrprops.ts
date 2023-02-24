@@ -10,7 +10,7 @@ export async function getAuthSideProps(context: GetServerSidePropsContext) {
             const response = await getProfile(context);
 
             if (response.status === 200) {
-                return signalAuthenticated(response.data);
+                return signalAuthenticated(context, response.data);
             }
         } catch {}
     }
@@ -40,11 +40,15 @@ export async function navigateFromLoginPageIfLoggedInProps(
     };
 }
 
-function signalAuthenticated(profileDto: ProfileDto) {
+function signalAuthenticated(
+    context: GetServerSidePropsContext,
+    profileDto: ProfileDto,
+) {
     return {
         props: {
             authenticated: true,
             profileDto,
+            hostname: context.req.headers.host,
         },
     };
 }

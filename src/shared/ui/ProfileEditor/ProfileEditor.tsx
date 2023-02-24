@@ -20,12 +20,14 @@ export interface ProfileEditorProps {
     visible: boolean;
     profileDto: ProfileDto;
     onClose: () => void;
+    hostname: string;
 }
 
 export const ProfileEditor: React.FC<ProfileEditorProps> = ({
     visible,
     profileDto,
     onClose,
+    hostname,
 }) => {
     const [api, contextHolder] = useNotification();
 
@@ -39,7 +41,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
 
     const notify = (text: string) => {
         api.info({
-            message: `Вход`,
+            message: `Аккаунт`,
             description: <Context.Consumer>{() => text}</Context.Consumer>,
         });
     };
@@ -101,7 +103,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
                 </label>
                 <section className={styles.address}>
                     <section className={styles.address__prefix}>
-                        <p className={styles.address__text}>{router.route}/</p>
+                        <p className={styles.address__text}>{hostname}/</p>
                     </section>
                     <Input
                         onChange={handleChange}
@@ -116,12 +118,14 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
                     Описание
                 </label>
                 <section className={styles.container__rows}>
-                    <Input
-                        onChange={handleChange}
-                        name="description"
-                        isTextArea={true}
-                        value={profile.description}
-                    />
+                    <section className={styles.description}>
+                        <Input
+                            onChange={handleChange}
+                            name="description"
+                            isTextArea={true}
+                            value={profile.description}
+                        />
+                    </section>
                     <section className={styles.container__buttons}>
                         <Button text="Отмена" onClick={() => onClose()} />
                         <ToggleButton isActive={canEditSucceed}>

@@ -19,9 +19,10 @@ import styles from './index.module.scss';
 export interface ProfilePageProps {
     authenticated: boolean;
     profileDto: ProfileDto;
+    hostname: string;
 }
 
-const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto }) => {
+const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto, hostname }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleProfileEditorClose = () => {
@@ -37,6 +38,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto }) => {
             <ProfileEditor
                 visible={isEditing}
                 profileDto={profileDto}
+                hostname={hostname}
                 onClose={handleProfileEditorClose}
             />
             <HeaderContentFooterGrid>
@@ -47,11 +49,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto }) => {
                 />
                 <section className={styles.grid}>
                     <Cover url={profileDto.cover?.url} />
-                    <MainAccount profileDto={profileDto} onEdit={handleEdit} />
+                    <MainAccount
+                        profileDto={profileDto}
+                        onEdit={handleEdit}
+                        hostname={hostname}
+                    />
                 </section>
-                <Footer>
-                    <NoAccountYet />
-                </Footer>
             </HeaderContentFooterGrid>
         </>
     );
