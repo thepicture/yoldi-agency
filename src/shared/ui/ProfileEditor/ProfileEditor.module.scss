@@ -37,7 +37,7 @@
         }
 
         & section input {
-            width: inherit;
+            width: 100%;
         }
 
         & section:last-child,
@@ -139,5 +139,36 @@
     & section {
         width: auto;
         border: none;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .container {
+        display: none;
+
+        &__editor {
+            width: 100%;
+            left: auto;
+            top: 80px;
+            height: calc(100% - 80px);
+
+            border: 0;
+        }
+
+        &__title {
+            width: 340px;
+        }
+
+        &__rows {
+            row-gap: 84px;
+            grid-template-rows: 1fr auto;
+        }
+
+        &__buttons {
+            padding-top: 0;
+        }
+    }
+
+    .description {
     }
 }
