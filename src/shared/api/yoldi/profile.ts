@@ -28,6 +28,7 @@ export type UpdateProfileDto = {
     name: string;
     slug: string;
     description: string;
+    coverId?: string | null;
 };
 
 export const getProfile = (context: GetServerSidePropsContext) => {

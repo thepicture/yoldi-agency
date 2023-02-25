@@ -1,19 +1,18 @@
+import useNotification from 'antd/lib/notification/useNotification';
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { getAuthSideProps } from '@/shared/api/ssrprops';
 import { ProfileDto } from '@/shared/api/yoldi/profile';
 import { Cover } from '@/shared/ui/Cover';
-import { Footer } from '@/shared/ui/Footer';
 import { Header } from '@/shared/ui/Header/Header';
 import { HeaderContentFooterGrid } from '@/shared/ui/HeaderContentFooterGrid';
 import { Logo } from '@/shared/ui/Logo';
 import { MainAccount } from '@/shared/ui/MainAccount';
-import { NoAccountYet } from '@/shared/ui/NoAccountYet';
 import { ProfileEditor } from '@/shared/ui/ProfileEditor';
 import { UserBlock } from '@/shared/ui/UserBlock';
 
+import { Context } from '../_app';
 import styles from './index.module.scss';
 
 export interface ProfilePageProps {
@@ -23,6 +22,14 @@ export interface ProfilePageProps {
 }
 
 const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto, hostname }) => {
+    const [api, contextHolder] = useNotification();
+
+    const notify = (text: string) => {
+        api.info({
+            message: `Аккаунт`,
+            description: <Context.Consumer>{() => text}</Context.Consumer>,
+        });
+    };
     const [isEditing, setIsEditing] = useState(false);
 
     const handleProfileEditorClose = () => {
@@ -35,6 +42,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto, hostname }) => {
 
     return (
         <>
+            {contextHolder}
             <ProfileEditor
                 visible={isEditing}
                 profileDto={profileDto}
@@ -48,7 +56,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profileDto, hostname }) => {
                     userGroup={<UserBlock name={profileDto.name} />}
                 />
                 <section className={styles.grid}>
-                    <Cover url={profileDto.cover?.url} />
+                    <Cover profileDto={profileDto} onNotify={notify} />
                     <MainAccount
                         profileDto={profileDto}
                         onEdit={handleEdit}

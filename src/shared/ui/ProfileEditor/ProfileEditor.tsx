@@ -31,6 +31,13 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
 }) => {
     const [api, contextHolder] = useNotification();
 
+    const notify = (text: string) => {
+        api.info({
+            message: `Аккаунт`,
+            description: <Context.Consumer>{() => text}</Context.Consumer>,
+        });
+    };
+
     const [profile, setProfile] = useState<UpdateProfileDto>({
         name: profileDto.name,
         slug: profileDto.slug,
@@ -38,13 +45,6 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
     });
 
     const router = useRouter();
-
-    const notify = (text: string) => {
-        api.info({
-            message: `Аккаунт`,
-            description: <Context.Consumer>{() => text}</Context.Consumer>,
-        });
-    };
 
     const handleChange = ({
         target: { name, value },

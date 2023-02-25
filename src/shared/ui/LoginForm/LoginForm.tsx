@@ -17,8 +17,9 @@ import { ToggleButton } from '../ToggleButton';
 import styles from './LoginForm.module.scss';
 
 export const LoginForm: React.FC = () => {
-    const [api, contextHolder] = useNotification();
     const router = useRouter();
+
+    const [api, contextHolder] = useNotification();
 
     const notify = (text: string) => {
         api.info({

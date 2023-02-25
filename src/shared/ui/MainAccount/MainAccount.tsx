@@ -1,9 +1,13 @@
+import useNotification from 'antd/lib/notification/useNotification';
 import { useRouter } from 'next/router';
 import React from 'react';
+
+import { Context } from '@/pages/_app';
 
 import { deleteApiKey } from '@/shared/api/session';
 import { ProfileDto } from '@/shared/api/yoldi/profile';
 
+import { Avatar } from '../Avatar/Avatar';
 import { Button } from '../Button';
 import styles from './MainAccount.module.scss';
 
@@ -16,9 +20,17 @@ export interface MainAccountProps {
 
 export const MainAccount: React.FC<MainAccountProps> = ({
     profileDto,
-    hostname,
     onEdit,
 }) => {
+    const [api, contextHolder] = useNotification();
+
+    const notify = (text: string) => {
+        api.info({
+            message: `Фото`,
+            description: <Context.Consumer>{() => text}</Context.Consumer>,
+        });
+    };
+
     const router = useRouter();
 
     const handleLogOut = () => {
@@ -28,11 +40,10 @@ export const MainAccount: React.FC<MainAccountProps> = ({
 
     return (
         <section className={styles.layout__main}>
+            {contextHolder}
             <main className={styles.main}>
                 <section className={styles.avatar}>
-                    <p className={styles.letter}>
-                        {profileDto.name[0].toUpperCase()}
-                    </p>
+                    <Avatar profileDto={profileDto} onNotify={notify} />
                 </section>
                 <section className={styles.heading}>
                     <h2 className={styles.title}>{profileDto.name}</h2>
@@ -41,7 +52,7 @@ export const MainAccount: React.FC<MainAccountProps> = ({
                     <Button
                         text="Редактировать"
                         onClick={onEdit}
-                        icon={
+                        beforeIcon={
                             <svg
                                 width="20"
                                 height="20"
@@ -63,7 +74,7 @@ export const MainAccount: React.FC<MainAccountProps> = ({
                     <Button
                         text="Выйти"
                         onClick={handleLogOut}
-                        icon={
+                        beforeIcon={
                             <svg
                                 width="19"
                                 height="20"
