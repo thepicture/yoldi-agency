@@ -6,14 +6,29 @@ export interface ButtonProps {
     text: string;
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 
-    icon?: React.ReactNode;
+    beforeIcon?: React.ReactNode;
+    afterIcon?: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, onClick, icon }) => {
+export const Button: React.FC<ButtonProps> = ({
+    text,
+    onClick,
+    beforeIcon,
+    afterIcon,
+}) => {
     return (
         <button className={styles.button} type="button" onClick={onClick}>
-            {icon && <span className={styles.icon}>{icon}</span>}
+            {beforeIcon && (
+                <span className={[styles.icon, styles.icon__before].join(' ')}>
+                    {beforeIcon}
+                </span>
+            )}
             {text}
+            {afterIcon && (
+                <span className={[styles.icon, styles.icon__after].join(' ')}>
+                    {afterIcon}
+                </span>
+            )}
         </button>
     );
 };
