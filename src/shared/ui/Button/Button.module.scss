@@ -35,8 +35,12 @@
 .icon {
     display: flex;
     align-items: center;
-    width: 25px;
-    height: 25px;
 
-    padding-right: 10px;
+    &__before {
+        padding-right: 10px;
+    }
+
+    &__after {
+        padding-left: 10px;
+    }
 }
