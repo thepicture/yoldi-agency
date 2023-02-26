@@ -152,7 +152,8 @@
             top: 80px;
             height: calc(100% - 80px);
 
-            border: 0;
+            border: none;
+            border-radius: 0;
         }
 
         &__title {

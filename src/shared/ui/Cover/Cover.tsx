@@ -11,10 +11,12 @@ const DELETE = null;
 
 export interface CoverProps {
     profileDto: ProfileDto;
+    isMe: boolean;
+
     onNotify: (message: string) => void;
 }
 
-export const Cover: React.FC<CoverProps> = ({ profileDto, onNotify }) => {
+export const Cover: React.FC<CoverProps> = ({ profileDto, onNotify, isMe }) => {
     const router = useRouter();
 
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -100,47 +102,49 @@ export const Cover: React.FC<CoverProps> = ({ profileDto, onNotify }) => {
                     onChange={handleCoverChange}
                     ref={inputRef}
                 />
-                {profileDto.cover ? (
-                    <Button
-                        text="Удалить"
-                        beforeIcon={
-                            <svg
-                                width="18"
-                                height="20"
-                                viewBox="0 0 18 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.4375 0.625C7.02856 0.625 6.61047 0.768433 6.31445 1.06445C6.01843 1.36047 5.875 1.77856 5.875 2.1875V2.96875H0.40625V4.53125H1.26074L2.75 18.667L2.82324 19.375H15.1768L15.25 18.667L16.7393 4.53125H17.5938V2.96875H12.125V2.1875C12.125 1.77856 11.9816 1.36047 11.6855 1.06445C11.3895 0.768433 10.9714 0.625 10.5625 0.625H7.4375ZM7.4375 2.1875H10.5625V2.96875H7.4375V2.1875ZM2.84766 4.53125H15.1523L13.7607 17.8125H4.23926L2.84766 4.53125ZM5.875 6.875V15.4688H7.4375V6.875H5.875ZM8.21875 6.875V15.4688H9.78125V6.875H8.21875ZM10.5625 6.875V15.4688H12.125V6.875H10.5625Z"
-                                    fill="black"
-                                />
-                            </svg>
-                        }
-                        afterIcon={imageIcon}
-                        onClick={handleCoverDelete}
-                    />
-                ) : (
-                    <Button
-                        text="Загрузить"
-                        beforeIcon={
-                            <svg
-                                width="15"
-                                height="20"
-                                viewBox="0 0 15 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.307617L6.93848 0.844727L1.46973 6.31348L2.59277 7.43652L6.71875 3.31055V16.25H8.28125V3.31055L12.4072 7.43652L13.5303 6.31348L8.06152 0.844727L7.5 0.307617ZM0.46875 17.8125V19.375H14.5312V17.8125H0.46875Z"
-                                    fill="black"
-                                />
-                            </svg>
-                        }
-                        afterIcon={imageIcon}
-                        onClick={handleCoverUpload}
-                    />
-                )}
+                {profileDto.cover
+                    ? isMe && (
+                          <Button
+                              text="Удалить"
+                              beforeIcon={
+                                  <svg
+                                      width="18"
+                                      height="20"
+                                      viewBox="0 0 18 20"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                      <path
+                                          d="M7.4375 0.625C7.02856 0.625 6.61047 0.768433 6.31445 1.06445C6.01843 1.36047 5.875 1.77856 5.875 2.1875V2.96875H0.40625V4.53125H1.26074L2.75 18.667L2.82324 19.375H15.1768L15.25 18.667L16.7393 4.53125H17.5938V2.96875H12.125V2.1875C12.125 1.77856 11.9816 1.36047 11.6855 1.06445C11.3895 0.768433 10.9714 0.625 10.5625 0.625H7.4375ZM7.4375 2.1875H10.5625V2.96875H7.4375V2.1875ZM2.84766 4.53125H15.1523L13.7607 17.8125H4.23926L2.84766 4.53125ZM5.875 6.875V15.4688H7.4375V6.875H5.875ZM8.21875 6.875V15.4688H9.78125V6.875H8.21875ZM10.5625 6.875V15.4688H12.125V6.875H10.5625Z"
+                                          fill="black"
+                                      />
+                                  </svg>
+                              }
+                              afterIcon={imageIcon}
+                              onClick={handleCoverDelete}
+                          />
+                      )
+                    : isMe && (
+                          <Button
+                              text="Загрузить"
+                              beforeIcon={
+                                  <svg
+                                      width="15"
+                                      height="20"
+                                      viewBox="0 0 15 20"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                      <path
+                                          d="M7.5 0.307617L6.93848 0.844727L1.46973 6.31348L2.59277 7.43652L6.71875 3.31055V16.25H8.28125V3.31055L12.4072 7.43652L13.5303 6.31348L8.06152 0.844727L7.5 0.307617ZM0.46875 17.8125V19.375H14.5312V17.8125H0.46875Z"
+                                          fill="black"
+                                      />
+                                  </svg>
+                              }
+                              afterIcon={imageIcon}
+                              onClick={handleCoverUpload}
+                          />
+                      )}
             </section>
         </>
     );
