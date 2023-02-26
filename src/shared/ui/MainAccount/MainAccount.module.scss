@@ -94,6 +94,7 @@
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: repeat(5, min-content) auto;
+        width: 100%;
     }
 
     .layout__main {

@@ -28,7 +28,7 @@ export async function navigateFromLoginPageIfLoggedInProps(
             const response = await getProfile(context);
 
             if (response.status === 200) {
-                return redirectTo('account/' + response.data.slug);
+                return redirectTo(response.data.slug);
             }
         } catch {}
     }
@@ -56,7 +56,7 @@ function signalAuthenticated(
 function redirectTo(path: string) {
     return {
         redirect: {
-            destination: `/${path}`,
+            destination: `${path}`,
             statusCode: 302,
         },
     };
