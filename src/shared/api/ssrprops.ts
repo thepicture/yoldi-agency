@@ -9,7 +9,7 @@ export async function getAuthSideProps(context: GetServerSidePropsContext) {
         try {
             const response = await getProfile(context);
 
-            if (response.status === 200) {
+            if (response.status === 200 && context.req.url !== '/') {
                 return signalAuthenticated(context, response.data);
             }
         } catch {}
@@ -27,10 +27,19 @@ export async function navigateFromLoginPageIfLoggedInProps(
         try {
             const response = await getProfile(context);
 
-            if (response.status === 200) {
+            if (response.status === 200 && context.req.url !== '/') {
                 return redirectTo(response.data.slug);
             }
         } catch {}
+    }
+
+    if (context.req.url === '/') {
+        return {
+            redirect: {
+                destination: `login`,
+                statusCode: 302,
+            },
+        };
     }
 
     return {

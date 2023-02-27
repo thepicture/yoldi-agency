@@ -1,0 +1,49 @@
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+
+    align-items: center;
+
+    max-width: 800px;
+
+    cursor: pointer;
+}
+
+.avatar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.name {
+    height: 26px;
+
+    padding-left: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.email {
+    height: 26px;
+
+    padding-left: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+
+    display: flex;
+    align-items: center;
+
+    color: #838383;
+}

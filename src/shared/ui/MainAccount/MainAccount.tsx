@@ -52,7 +52,7 @@ export const MainAccount: React.FC<MainAccountProps> = ({
                     />
                 </section>
                 <section className={styles.heading}>
-                    <h2 className={styles.title}>{profileDto.name}</h2>
+                    <h2 className={styles.title}>{profileDto?.name}</h2>
                 </section>
                 <section className={styles.edit}>
                     {isMe && (
@@ -76,8 +76,8 @@ export const MainAccount: React.FC<MainAccountProps> = ({
                         />
                     )}
                 </section>
-                <p className={styles.email}>{profileDto.email}</p>
-                <p className={styles.description}>{profileDto.description}</p>
+                <p className={styles.email}>{profileDto?.email}</p>
+                <p className={styles.description}>{profileDto?.description}</p>
                 <section className={styles.button}>
                     {isMe && (
                         <Button
