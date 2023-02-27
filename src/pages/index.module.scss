@@ -2,3 +2,17 @@
     display: grid;
     grid-template-rows: 200px 1fr;
 }
+
+.account {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 50px;
+}
+
+@media screen and (max-width: 640px) {
+    .account {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

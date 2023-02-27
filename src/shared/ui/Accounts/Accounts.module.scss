@@ -1,0 +1,26 @@
+.header {
+    max-width: 800px;
+    height: 42px;
+
+    position: sticky;
+    top: 0px;
+    padding-top: 16px;
+    background-color: white;
+
+    z-index: 1;
+
+    padding-bottom: 30px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 140%;
+
+    color: #000000;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
