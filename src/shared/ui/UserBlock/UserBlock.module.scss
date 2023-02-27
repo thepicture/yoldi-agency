@@ -46,3 +46,15 @@
 
     color: #000000;
 }
+
+.image {
+    box-sizing: border-box;
+
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid #e6e6e6;
+    border-radius: 26px;
+
+    object-fit: cover;
+}

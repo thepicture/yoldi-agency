@@ -8,14 +8,14 @@ import styles from './Avatar.module.scss';
 
 export interface AvatarProps {
     profileDto: ProfileDto;
-    isMe: boolean;
+    isMe?: boolean;
 
-    onNotify: (message: string) => void;
+    onNotify?: (message: string) => void;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
     profileDto,
-    isMe,
+    isMe = false,
     onNotify,
 }) => {
     const router = useRouter();
@@ -40,11 +40,11 @@ export const Avatar: React.FC<AvatarProps> = ({
 
             await patchProfile(payload);
 
-            onNotify(`Фото обновлено!`);
+            onNotify!(`Фото обновлено!`);
 
             router.replace(router.asPath);
         } catch (error) {
-            onNotify(`Не удалось обновить фото. ${error}`);
+            onNotify!(`Не удалось обновить фото. ${error}`);
         } finally {
             inputRef.current!.value = '';
         }
@@ -59,15 +59,16 @@ export const Avatar: React.FC<AvatarProps> = ({
                 onChange={handleImageChange}
                 ref={inputRef}
             />
-            {profileDto.image ? (
+            {profileDto?.image ? (
                 <img
                     className={styles.image}
-                    src={profileDto.image.url}
+                    src={profileDto?.image?.url}
                     alt={`profile image of ${profileDto.name}`}
+                    loading="lazy"
                 />
             ) : (
                 <p className={styles.letter}>
-                    {profileDto.name[0].toUpperCase()}
+                    {profileDto?.name[0]?.toUpperCase()}
                 </p>
             )}
             {isMe && (

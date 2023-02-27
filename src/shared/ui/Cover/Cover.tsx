@@ -85,11 +85,12 @@ export const Cover: React.FC<CoverProps> = ({ profileDto, onNotify, isMe }) => {
 
     return (
         <>
-            {profileDto.cover?.url ? (
+            {profileDto?.cover?.url ? (
                 <img
                     className={styles.cover}
                     src={profileDto.cover.url}
                     alt={`cover image of ${profileDto.name}`}
+                    loading="lazy"
                 />
             ) : (
                 <section className={styles.empty} />
@@ -102,7 +103,7 @@ export const Cover: React.FC<CoverProps> = ({ profileDto, onNotify, isMe }) => {
                     onChange={handleCoverChange}
                     ref={inputRef}
                 />
-                {profileDto.cover
+                {profileDto?.cover
                     ? isMe && (
                           <Button
                               text="Удалить"
