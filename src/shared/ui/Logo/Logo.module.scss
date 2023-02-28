@@ -11,4 +11,12 @@
         padding-top: 16.43px;
         padding-left: 8.24px;
     }
+
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+
+        transition: all 50ms ease-in-out;
+    }
 }
