@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import { ProfileDto } from '@/shared/api/yoldi/profile';
 import { getAccounts } from '@/shared/api/yoldi/user';
@@ -12,21 +12,20 @@ export const Accounts = () => {
 
     useEffect(() => {
         getAccounts().then((fetchedAccounts) => setAccounts(fetchedAccounts));
-    });
+    }, [accounts.length]);
 
     return (
-        <section>
+        <section className={styles.container}>
             <h2 className={styles.header}>Список аккаунтов</h2>
             <Divider />
             {accounts.map((account) => {
                 return (
-                    <>
+                    <Fragment key={account.email}>
                         <AccountRow profileDto={account} />
                         <Divider />
-                    </>
+                    </Fragment>
                 );
             })}
-            <Divider />
         </section>
     );
 };

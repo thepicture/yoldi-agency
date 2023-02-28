@@ -1,6 +1,15 @@
 .block {
     display: flex;
 
+    cursor: pointer;
+
+    &:hover {
+        background-color: #eee;
+        border-radius: 10px;
+
+        transition: all 50ms ease-in-out;
+    }
+
     &__name {
         display: flex;
         align-items: center;

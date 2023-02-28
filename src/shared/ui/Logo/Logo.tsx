@@ -1,10 +1,21 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import styles from './Logo.module.scss';
 
 export const Logo: React.FC = () => {
+    const router = useRouter();
+
+    const navigateToMainPage = () => {
+        router.push('/');
+    };
+
     return (
-        <section className={styles.logo}>
+        <section
+            className={styles.logo}
+            title="Main Page"
+            onClick={navigateToMainPage}
+        >
             <svg
                 className={styles.logo__text}
                 width="64"

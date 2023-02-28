@@ -23,8 +23,12 @@ export const AccountRow: React.FC<AccountRowProps> = ({ profileDto }) => {
             <section className={styles.avatar}>
                 <UserBlock me={profileDto} onlyAvatar={true} />
             </section>
-            <h3 className={styles.name}>{profileDto.name}</h3>
-            <p className={styles.email}>{profileDto.email}</p>
+            <section className={styles.credentials}>
+                <h3 className={styles.name}>{profileDto.name}</h3>
+                <section className={styles.container__email}>
+                    <p className={styles.email}>{profileDto.email}</p>
+                </section>
+            </section>
         </article>
     );
 };
