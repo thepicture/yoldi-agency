@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { ProfileDto } from '@/shared/api/yoldi/profile';
@@ -13,6 +14,12 @@ export const UserBlock: React.FC<UserBlockProps> = ({
     me,
     onlyAvatar = false,
 }) => {
+    const router = useRouter();
+
+    const navigateToMyProfile = () => {
+        router.push(me.slug);
+    };
+
     return onlyAvatar ? (
         me.image ? (
             <img
@@ -27,7 +34,11 @@ export const UserBlock: React.FC<UserBlockProps> = ({
             </section>
         )
     ) : (
-        <section className={styles.block}>
+        <section
+            className={styles.block}
+            title="My Profile"
+            onClick={navigateToMyProfile}
+        >
             <p className={styles.block__name}>{me.name}</p>
             {me.image ? (
                 <img

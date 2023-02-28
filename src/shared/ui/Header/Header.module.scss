@@ -4,12 +4,19 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
 
+    position: sticky;
+    top: 0;
+
+    z-index: 2;
+
     align-content: center;
     align-items: center;
 
     border-bottom: 1px solid $strokes-secondary;
 
     padding-left: 20px;
+
+    background-color: white;
 
     &__title {
         font-family: 'Inter', sans-serif;
@@ -20,12 +27,15 @@
 
         padding-left: 20px;
 
-        width: 225px;
+        max-width: 225px;
 
         color: #000000;
     }
 
     &__usergroup {
+        position: sticky;
+        right: 0;
+
         padding-right: 29.5px;
         align-self: center;
     }

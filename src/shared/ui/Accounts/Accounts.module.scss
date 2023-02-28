@@ -1,11 +1,17 @@
-.header {
+.container {
     max-width: 800px;
-    height: 42px;
 
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.header {
     position: sticky;
-    top: 0px;
-    padding-top: 16px;
+    top: 80px;
+    padding-top: 30px;
     background-color: white;
+
+    word-break: break-all;
 
     z-index: 1;
 

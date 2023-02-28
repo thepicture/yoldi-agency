@@ -9,7 +9,7 @@ export async function getAuthSideProps(context: GetServerSidePropsContext) {
         try {
             const response = await getProfile(context);
 
-            if (response.status === 200 && context.req.url !== '/') {
+            if (response.status === 200) {
                 return signalAuthenticated(context, response.data);
             }
         } catch {}
