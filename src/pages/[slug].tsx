@@ -1,7 +1,11 @@
 import useNotification from 'antd/lib/notification/useNotification';
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+
+import { User } from '@/entities/user';
+
+import { useNavigateToLogin } from '@/features/login';
+import { ProfileEditor } from '@/features/profile-editor/ui';
 
 import { getAuthSideProps } from '@/shared/api/ssrprops';
 import { ProfileDto } from '@/shared/api/yoldi/profile';
@@ -12,8 +16,8 @@ import { Header } from '@/shared/ui/Header/Header';
 import { HeaderContentFooterGrid } from '@/shared/ui/HeaderContentFooterGrid';
 import { Logo } from '@/shared/ui/Logo';
 import { MainAccount } from '@/shared/ui/MainAccount';
-import { ProfileEditor } from '@/shared/ui/ProfileEditor';
-import { UserBlock } from '@/shared/ui/UserBlock';
+
+import { UserBlock } from '@/widgets/user-block/ui';
 
 import { Context } from './_app';
 import styles from './index.module.scss';
@@ -22,7 +26,6 @@ export interface ProfilePageProps {
     authenticated: boolean;
     profileDto: ProfileDto;
     hostname: string;
-    slug: string;
     isMe: boolean;
     me: ProfileDto;
 }
@@ -32,9 +35,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
     hostname,
     isMe,
     me,
-    slug,
 }) => {
-    const router = useRouter();
+    const navigateToLogin = useNavigateToLogin();
 
     const [api, contextHolder] = useNotification();
 
@@ -52,10 +54,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
 
     const handleEdit = () => {
         setIsEditing(true);
-    };
-
-    const handleNavigateToLogin = () => {
-        router.push('/login');
     };
 
     return (
@@ -77,21 +75,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
                         me ? (
                             <UserBlock me={me} />
                         ) : (
-                            <Button
-                                text="Войти"
-                                onClick={handleNavigateToLogin}
-                            />
+                            <Button text="Войти" onClick={navigateToLogin} />
                         )
                     }
                 />
                 <section className={styles.grid}>
-                    <Cover
+                    <User
                         profileDto={profileDto}
                         onNotify={notify}
-                        isMe={isMe}
-                    />
-                    <MainAccount
-                        profileDto={profileDto}
                         onEdit={handleEdit}
                         hostname={hostname}
                         isMe={isMe}

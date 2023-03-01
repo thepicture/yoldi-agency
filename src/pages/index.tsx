@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
+
+import { useNavigateToLogin } from '@/features/login';
 
 import { getAuthSideProps } from '@/shared/api/ssrprops';
 import { ProfileDto } from '@/shared/api/yoldi/profile';
@@ -10,7 +11,8 @@ import { Button } from '@/shared/ui/Button';
 import { Header } from '@/shared/ui/Header';
 import { HeaderContentFooterGrid } from '@/shared/ui/HeaderContentFooterGrid';
 import { Logo } from '@/shared/ui/Logo';
-import { UserBlock } from '@/shared/ui/UserBlock';
+
+import { UserBlock } from '@/widgets/user-block';
 
 import styles from './index.module.scss';
 
@@ -20,11 +22,7 @@ export type AccountPageProps = {
 };
 
 const AccountsPage: React.FC<AccountPageProps> = ({ me, isMe }) => {
-    const router = useRouter();
-
-    const handleNavigateToLogin = () => {
-        router.push('/login');
-    };
+    const navigateToLogin = useNavigateToLogin();
 
     return (
         <HeaderContentFooterGrid>
@@ -35,7 +33,7 @@ const AccountsPage: React.FC<AccountPageProps> = ({ me, isMe }) => {
                     me ? (
                         <UserBlock me={me} />
                     ) : (
-                        <Button text="Войти" onClick={handleNavigateToLogin} />
+                        <Button text="Войти" onClick={navigateToLogin} />
                     )
                 }
             />
