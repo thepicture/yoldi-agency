@@ -1,6 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
+
+import { useNavigateToLogin } from '@/features/login';
+import { RegistrationForm } from '@/features/registration';
 
 import { navigateFromLoginPageIfLoggedInProps } from '@/shared/api/ssrprops';
 import { AlreadyHaveAccount } from '@/shared/ui/AlreadyHaveAccount';
@@ -10,26 +12,16 @@ import { Footer } from '@/shared/ui/Footer';
 import { Header } from '@/shared/ui/Header/Header';
 import { HeaderContentFooterGrid } from '@/shared/ui/HeaderContentFooterGrid';
 import { Logo } from '@/shared/ui/Logo';
-import { RegistrationForm } from '@/shared/ui/RegistrationForm';
 
 const RegistrationPage: React.FC = () => {
-    const router = useRouter();
-
-    const handleNavigateToSignIn = () => {
-        router.push('/login');
-    };
+    const navigateToLogin = useNavigateToLogin();
 
     return (
         <HeaderContentFooterGrid>
             <Header
                 logo={<Logo />}
                 text="Разрабатываем и запускаем сложные веб проекты"
-                userGroup={
-                    <Button
-                        text="Войти"
-                        onClick={() => handleNavigateToSignIn()}
-                    />
-                }
+                userGroup={<Button text="Войти" onClick={navigateToLogin} />}
             />
             <CenteredWrapper>
                 <RegistrationForm />

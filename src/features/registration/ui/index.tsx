@@ -1,32 +1,25 @@
-import useNotification from 'antd/lib/notification/useNotification';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { Context } from '@/pages/_app';
+import { useNotificationLibrary } from '@/processes/notification';
 
 import { saveApiKey } from '@/shared/api/session';
 import { auth } from '@/shared/api/yoldi';
 import { SignUpDto } from '@/shared/api/yoldi/auth';
 import { EMAIL_REGEXP } from '@/shared/config';
+import { EmailFieldIcon } from '@/shared/ui/Icons/EmailFieldIcon';
+import { NameIcon } from '@/shared/ui/Icons/NameIcon';
+import { PasswordIcon } from '@/shared/ui/Icons/PasswordIcon';
+import { Input } from '@/shared/ui/Input';
+import { ToggleButton } from '@/shared/ui/ToggleButton';
 
-import { EmailFieldIcon } from '../Icons/EmailFieldIcon';
-import { NameIcon } from '../Icons/NameIcon';
-import { PasswordIcon } from '../Icons/PasswordIcon';
-import { Input } from '../Input';
-import { ToggleButton } from '../ToggleButton';
-import styles from './RegistrationForm.module.scss';
+import styles from './styles.module.scss';
 
 export const RegistrationForm: React.FC = () => {
-    const [api, contextHolder] = useNotification();
-    const router = useRouter();
+    const [contextHolder, notify] = useNotificationLibrary('Регистрация');
 
-    const notify = (text: string) => {
-        api.info({
-            message: `Регистрация`,
-            description: <Context.Consumer>{() => text}</Context.Consumer>,
-        });
-    };
+    const router = useRouter();
 
     const [fields, setFields] = useState<SignUpDto>({
         email: '',

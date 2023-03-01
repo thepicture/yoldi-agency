@@ -10,11 +10,11 @@ import {
     UpdateProfileDto,
     patchProfile,
 } from '@/shared/api/yoldi/profile';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { ToggleButton } from '@/shared/ui/ToggleButton';
 
-import { Button } from '../Button';
-import { Input } from '../Input';
-import { ToggleButton } from '../ToggleButton';
-import styles from './ProfileEditor.module.scss';
+import styles from './styles.module.scss';
 
 export interface ProfileEditorProps {
     visible: boolean;
@@ -64,7 +64,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({
             if (response.status >= 200 && response.status < 300) {
                 notify('Профиль обновлён!');
                 onClose();
-                router.replace(`/`);
+                router.replace(router.asPath);
             }
         } catch (error) {
             if (error instanceof AxiosError) {

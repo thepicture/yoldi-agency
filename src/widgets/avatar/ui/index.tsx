@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { postImage } from '@/shared/api/yoldi/image';
 import { ProfileDto, patchProfile } from '@/shared/api/yoldi/profile';
 
-import styles from './Avatar.module.scss';
+import styles from './styles.module.scss';
 
 export interface AvatarProps {
     profileDto: ProfileDto;
