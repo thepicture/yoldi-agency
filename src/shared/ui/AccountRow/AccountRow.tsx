@@ -3,8 +3,8 @@ import React from 'react';
 
 import { ProfileDto } from '@/shared/api/yoldi/profile';
 
-import { Avatar } from '../Avatar/Avatar';
-import { UserBlock } from '../UserBlock';
+import { UserBlock } from '@/widgets/user-block/ui';
+
 import styles from './AccountRow.module.scss';
 
 export type AccountRowProps = {

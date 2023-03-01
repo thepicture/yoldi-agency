@@ -7,7 +7,8 @@ import { Context } from '@/pages/_app';
 import { deleteApiKey } from '@/shared/api/session';
 import { ProfileDto } from '@/shared/api/yoldi/profile';
 
-import { Avatar } from '../Avatar/Avatar';
+import { Avatar } from '@/widgets/avatar';
+
 import { Button } from '../Button';
 import styles from './MainAccount.module.scss';
 

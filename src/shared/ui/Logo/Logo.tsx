@@ -13,7 +13,7 @@ export const Logo: React.FC = () => {
     return (
         <section
             className={styles.logo}
-            title="Main Page"
+            title="На главную"
             onClick={navigateToMainPage}
         >
             <svg

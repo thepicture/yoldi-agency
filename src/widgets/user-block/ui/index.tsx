@@ -3,7 +3,7 @@ import React from 'react';
 
 import { ProfileDto } from '@/shared/api/yoldi/profile';
 
-import styles from './UserBlock.module.scss';
+import styles from './styles.module.scss';
 
 export interface UserBlockProps {
     me: ProfileDto;
@@ -36,7 +36,7 @@ export const UserBlock: React.FC<UserBlockProps> = ({
     ) : (
         <section
             className={styles.block}
-            title="My Profile"
+            title="Мой аккаунт"
             onClick={navigateToMyProfile}
         >
             <p className={styles.block__name}>{me.name}</p>

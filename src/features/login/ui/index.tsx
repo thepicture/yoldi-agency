@@ -1,32 +1,24 @@
-import useNotification from 'antd/lib/notification/useNotification';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { Context } from '@/pages/_app';
+import { useNotificationLibrary } from '@/processes/notification';
 
 import { saveApiKey } from '@/shared/api/session';
 import { auth } from '@/shared/api/yoldi';
 import { LoginDto } from '@/shared/api/yoldi/auth';
 import { EMAIL_REGEXP } from '@/shared/config';
+import { EmailFieldIcon } from '@/shared/ui/Icons/EmailFieldIcon';
+import { PasswordIcon } from '@/shared/ui/Icons/PasswordIcon';
+import { Input } from '@/shared/ui/Input';
+import { ToggleButton } from '@/shared/ui/ToggleButton';
 
-import { EmailFieldIcon } from '../Icons/EmailFieldIcon';
-import { PasswordIcon } from '../Icons/PasswordIcon';
-import { Input } from '../Input';
-import { ToggleButton } from '../ToggleButton';
-import styles from './LoginForm.module.scss';
+import styles from './styles.module.scss';
 
-export const LoginForm: React.FC = () => {
+export const LoginForm = () => {
     const router = useRouter();
 
-    const [api, contextHolder] = useNotification();
-
-    const notify = (text: string) => {
-        api.info({
-            message: `Вход`,
-            description: <Context.Consumer>{() => text}</Context.Consumer>,
-        });
-    };
+    const [contextHolder, notify] = useNotificationLibrary('Вход');
 
     const [fields, setFields] = useState<LoginDto>({
         email: '',
